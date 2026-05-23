@@ -1,12 +1,12 @@
 pipeline {
     agent any
   environment {
-        IMAGE_NAME = "varadg10/flask-devops"
+        IMAGE_NAME = "dockerhubusername/flask-devops"
     }
     stages {
         stage('Pull Code') {
             steps {
-                git 'https://github.com/gvarad/devops-project.git'
+                git 'git-repo-url'
             }
         }
         stage('OWASP Dependency Check') {
@@ -22,8 +22,8 @@ odcInstallation: 'dependency-check'
                     sonar-scanner \
                     -Dsonar.projectKey=flask-app \
                     -Dsonar.sources=. \
-                    -Dsonar.host.url=http://13.63.49.237:9000 \
-                    -Dsonar.login=squ_20b76e6516fbecd03a83d3fc7854e7da5b7ac3a7
+                    -Dsonar.host.url=http://PublicIP:9000 \
+                    -Dsonar.login=SonarqubeToken
                     '''
                 }
             }
